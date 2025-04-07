@@ -2,7 +2,7 @@
   <div>
     <h1>Periodic Table</h1>
     <div class="table">
-      <div v-for="element in elements" :key="element.id" :class="`element group${element.group}`">
+      <div v-for="element in elements" :key="element.id" :class="`element group${element.group}`" @click="openElement(element)">
         <div class="atomic_number">{{ element.atomic_number }}</div>
         <div class="symbol">{{ element.symbol }}</div>
         <div class="name">{{ element.name }}</div>
@@ -26,6 +26,12 @@ export default {
       .then(data => {
         this.elements = data;
       });
+  },
+  methods: {
+    openElement(element) {
+      console.log(element + " Working Fine");
+      this.$router.push({ name: 'note', params: { noteId: element.id } });
+    }
   }
 }
 </script>

@@ -4,7 +4,11 @@ from .models import Element
 
 # Create your views here.
 def element_list(request):
-    elements = Element.objects.all().values()
+    element_id = request.GET.get('id')
+    if element_id:
+        elements = Element.objects.filter(id=element_id).values()
+    else:
+        elements = Element.objects.all().values()
     return JsonResponse(list(elements), safe=False)
 
 def table(request):

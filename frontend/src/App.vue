@@ -1,17 +1,26 @@
 <template>
   <NavBar />
-  <ElementTable />
+  <StartSpace />
+  <RouterView />
+  <EndSpace />
+  <FootLinks />
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue'
-import ElementTable from './components/Table.vue';
+import StartSpace from './components/StartSpace.vue';
+import EndSpace from './components/EndSpace.vue';
+import FootLinks from './components/Footer.vue';
+import { RouterView } from 'vue-router';
 
 export default {
   name: 'App',
   components: {
     NavBar,
-    ElementTable
+    StartSpace,
+    RouterView,
+    EndSpace,
+    FootLinks,
   }
 }
 </script>

@@ -1,61 +1,94 @@
 <template>
   <div class="nav-bar">
     <div class="nav-bar-logo">
-      <img src="/frontend/public/Raven-01.jpg" alt="Logo">
+      <img :src="`Raven-02.png`" alt="Logo">
     </div>
     <div class="nav-bar-search">
-      <input type="text" placeholder="Search">
+      <input id="search-bar" type="text" placeholder="Search">
     </div>
+    <p>Purchase</p>
     <div class="nav-bar-switch">
       <label class="nav-bar-switch">
-        <input type="checkbox">
+        <input id="toggle" v-on:click="stateChange" type="checkbox">
         <span class="slider round"></span>
       </label>
     </div>
+    <p>Note</p>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'NavBar',
-}
+  export default {
+    name: 'NavBar',
+    data() {
+      return {
+        state: 'purchase',
+        login: false
+      }
+    },
+    // mounted() {
+    //   fetch('http://localhost:8000/api/elements/')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       this.elements = data;
+    //     });
+    // }
+    methods: {
+      stateChange() {
+        if (this.state === 'purchase') {
+          this.state = 'note'
+          console.log(this.state)
+        } else {
+          this.state = 'purchase'
+          console.log(this.state)
+        }
+      }
+    }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 * {
   padding: 0;
-  margin: 0;
+  margin: auto;
   box-sizing: border-box;
 }
 .nav-bar {
+  margin: auto;
   position: fixed;
-  /* display: flex; */
-  /* flex-flow: nowrap; */
+  display: flex;
+  flex-flow: nowrap;
   justify-content: space-between;
   padding: 10px;
   color: #1E2237;
-  width: 100vw;
+  background-color: white;
+  border-radius: 0 0 7px 7px;
+  width: 70vw;
+  height: 60px;
+  transform: translateX(50%);
+  right: 50%;
 }
 .nav-bar-logo {
-  /* flex: 1; */
+  padding-right: 10%;
+}
+.nav-bar-logo img {
+  width: 40px;
 }
 .nav-bar-search {
-  width: 100vw !important;
-  /* flex: 2; */
+  width: 50% !important;
 }
 .nav-bar-search input {
-  width: 40%;
+  width: 100%;
   padding: 10px;
   border: 1px solid #1E2237;
   border-radius: 5px;
 }
 .nav-bar-switch {
   position: relative;
-  display: inline-block;
+  display: flex;
   width: 30px;
   height: 17px;
-  /* flex: 3; */
 }
 .nav-bar-switch input {
   opacity: 0;
